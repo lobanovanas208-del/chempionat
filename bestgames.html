@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestGames - Магазин игр</title>
+    <link rel="stylesheet" href="bestgames.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">🎮 BestGames</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Поиск игр..." id="searchInput">
+                    <button onclick="searchGames()">🔍</button>
+                </div>
+                <div class="user-actions">
+                    <button class="cart-btn" onclick="toggleCart()">🛒 Корзина <span id="cartCount">0</span></button>
+                    <button class="login-btn" onclick="login()">👤 Войти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="filters-section">
+                <div class="filters">
+                    <select id="genreFilter" onchange="filterGames()">
+                        <option value="all">Все жанры</option>
+                        <option value="action">Экшен</option>
+                        <option value="rpg">RPG</option>
+                        <option value="strategy">Стратегия</option>
+                        <option value="sports">Спортивные</option>
+                    </select>
+                    
+                    <select id="platformFilter" onchange="filterGames()">
+                        <option value="all">Все платформы</option>
+                        <option value="pc">PC</option>
+                        <option value="playstation">PlayStation</option>
+                        <option value="xbox">Xbox</option>
+                        <option value="nintendo">Nintendo</option>
+                    </select>
+                    
+                    <select id="priceFilter" onchange="filterGames()">
+                        <option value="all">Любая цена</option>
+                        <option value="0-20">До $20</option>
+                        <option value="20-40">$20-$40</option>
+                        <option value="40-60">$40-$60</option>
+                        <option value="60+">$60+</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="games-section">
+                <h2>🔥 Популярные игры</h2>
+                <div class="games-grid" id="gamesGrid">
+                    <!-- Игры загружаются через JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Корзина -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 Ваша корзина</h3>
+                <button class="close-btn" onclick="toggleCart()">×</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Товары в корзине -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Итого: $<span id="totalPrice">0</span></strong>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">💳 Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="bestgames.js"></script>
+</body>
+</html>

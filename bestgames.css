@@ -1,0 +1,492 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #00ff88;
+    box-shadow: 0 2px 20px rgba(0, 255, 136, 0.3);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #00ff88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.search-bar {
+    display: flex;
+    flex: 0 1 400px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.search-bar button {
+    padding: 0.8rem 1.5rem;
+    background: #00ff88;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+    background: #00cc6a;
+    transform: scale(1.05);
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.cart-btn, .login-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cart-btn {
+    background: #ff6b6b;
+    color: white;
+    position: relative;
+}
+
+.login-btn {
+    background: #4ecdc4;
+    color: white;
+}
+
+.cart-btn:hover, .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Content */
+.main {
+    margin-top: 100px;
+    padding: 2rem 0;
+}
+
+/* Filters */
+.filters-section {
+    margin-bottom: 3rem;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filters select {
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.filters select:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.filters select option {
+    background: #1a1a2e;
+    color: white;
+}
+
+/* Games Grid */
+.games-section h2 {
+    margin-bottom: 2rem;
+    color: #00ff88;
+    font-size: 2.2rem;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.game-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #00ff88;
+    box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+}
+
+.game-image {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--game-color-1), var(--game-color-2));
+    opacity: 0.8;
+}
+
+.game-image::after {
+    content: '🎮';
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Цвета для разных игр */
+.game-card[data-game="1"] .game-image { --game-color-1: #ff6b6b; --game-color-2: #ee5a52; }
+.game-card[data-game="2"] .game-image { --game-color-1: #4ecdc4; --game-color-2: #44a39c; }
+.game-card[data-game="3"] .game-image { --game-color-1: #45b7d1; --game-color-2: #3ca0b8; }
+.game-card[data-game="4"] .game-image { --game-color-1: #96ceb4; --game-color-2: #85b8a1; }
+.game-card[data-game="5"] .game-image { --game-color-1: #feca57; --game-color-2: #e4b44e; }
+.game-card[data-game="6"] .game-image { --game-color-1: #ff9ff3; --game-color-2: #e68ed9; }
+.game-card[data-game="7"] .game-image { --game-color-1: #54a0ff; --game-color-2: #4a8ce4; }
+.game-card[data-game="8"] .game-image { --game-color-1: #5f27cd; --game-color-2: #5522b4; }
+
+.game-info {
+    padding: 1.5rem;
+}
+
+.game-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: #00ff88;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.game-details {
+    color: #ccc;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.game-rating {
+    color: #ffd700;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.game-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.add-to-cart {
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.add-to-cart:hover {
+    background: linear-gradient(45deg, #00cc6a, #00aa50);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+}
+
+/* Cart Modal */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+}
+
+.cart-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    border: 2px solid #00ff88;
+    box-shadow: 0 20px 60px rgba(0, 255, 136, 0.4);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.cart-header h3 {
+    color: #00ff88;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+.cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 255, 136, 0.3);
+}
+
+.cart-item:last-child {
+    margin-bottom: 0;
+}
+
+.remove-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.remove-btn:hover {
+    background: #ff5252;
+    transform: scale(1.05);
+}
+
+.cart-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.cart-total {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.checkout-btn:hover {
+    background: linear-gradient(45deg, #00cc6a, #00aa50);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .search-bar {
+        flex: 1;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .main {
+        margin-top: 150px;
+    }
+    
+    .filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filters select {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .cart-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.4rem;
+    }
+    
+    .user-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .cart-btn, .login-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .game-image {
+        height: 150px;
+        font-size: 3rem;
+    }
+}
